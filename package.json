@@ -39,11 +39,6 @@
                     "minimum": 1,
                     "default": 12,
                     "description": "Maximum number of items saved in clipboard"
-                },
-                "clipboard.log": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Turn Logging on or off"
                 }
             }
         },
