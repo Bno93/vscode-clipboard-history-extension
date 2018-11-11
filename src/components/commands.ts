@@ -28,9 +28,9 @@ export class Commands {
         text = doc.getText(new Range(lineStart, lineEnd));
       }
 
-      this.logger.addMessage("clipboard history length " + this.clipboardArray.length);
-      this.logger.addMessage("clipboard history size " + this.clipboardSize);
-      this.logger.addMessage("clipboard history added text [" + text + "]");
+      this.logger.addInfoMessage("clipboard history length " + this.clipboardArray.length);
+      this.logger.addInfoMessage("clipboard history size " + this.clipboardSize);
+      this.logger.addInfoMessage("clipboard history added text [" + text + "]");
 
       if (this.clipboardArray.indexOf(text) === -1) {
         this.clipboardArray.push(text);
@@ -42,7 +42,7 @@ export class Commands {
   }
 
   makeQuickPick(clipboardArray, toBeRemoved?: boolean) {
-    this.logger.addMessage("make QuickPick Clipboard History")
+    this.logger.addInfoMessage("make QuickPick Clipboard History")
     // Create quick pick clipboard items
     // var options: QuickPickOptions = { placeHolder: "Clipboard", matchOnDescription: true, matchOnDetail: true };
     var copiedItems: QuickPickItem[] = [];
@@ -58,7 +58,7 @@ export class Commands {
   }
 
   removeQuickPickItem(clipboardArray, item: QuickPickItem) {
-    this.logger.addMessage("remove Item from Clipboard History QuickPick")
+    this.logger.addInfoMessage("remove Item from Clipboard History QuickPick")
     let index = clipboardArray.indexOf(item.description)
     if (index > -1) {
       clipboardArray.splice(index, 1);
@@ -67,7 +67,7 @@ export class Commands {
   }
 
   editQuickPickItem(clipboardArray, item: QuickPickItem, text: string) {
-    this.logger.addMessage("edit Item from Clipboard History QuickPick")
+    this.logger.addInfoMessage("edit Item from Clipboard History QuickPick")
     if (item) {
       let description = item.description;
       let index = clipboardArray.indexOf(description);
@@ -77,12 +77,12 @@ export class Commands {
       return clipboardArray;
     }
     else {
-      this.logger.addMessage("item was undefined");
+      this.logger.addInfoMessage("item was undefined");
     }
   }
 
   pasteSelected(item: QuickPickItem) {
-    this.logger.addMessage("past from Clipboard History QuickPick")
+    this.logger.addInfoMessage("past from Clipboard History QuickPick")
     let activeEditor = window.activeTextEditor;
     // Don't run if no active text editor instance available
     if (activeEditor) {
@@ -100,14 +100,14 @@ export class Commands {
         });
       }
       else {
-        this.logger.addMessage("QuickPick probably was exit with no selection");
+        this.logger.addInfoMessage("QuickPick probably was exit with no selection");
       }
     }
   }
 
 
   pasteFromClipboard() {
-    this.logger.addMessage("past from Clipboard")
+    this.logger.addInfoMessage("past from Clipboard")
     if (this.clipboardArray.length == 0) {
       window.setStatusBarMessage("No items in clipboard");
       window.showQuickPick(this.makeQuickPick(this.clipboardArray));
@@ -118,7 +118,7 @@ export class Commands {
   }
 
   editClipboard() {
-    this.logger.addMessage("edit Clipboard")
+    this.logger.addInfoMessage("edit Clipboard")
     if (this.clipboardArray.length == 0) {
       window.setStatusBarMessage("No items in clipboard");
       return;
@@ -136,7 +136,7 @@ export class Commands {
   }
 
   removeFromClipboard() {
-    this.logger.addMessage("remove Clipboard")
+    this.logger.addInfoMessage("remove Clipboard")
     if (this.clipboardArray.length == 0) {
       window.setStatusBarMessage("No items in clipboard");
       window.showQuickPick(this.makeQuickPick(this.clipboardArray));

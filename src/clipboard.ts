@@ -11,13 +11,13 @@ export function activate(context: ExtensionContext) {
     var disposableArray = [];
     console.log('clipboard History activated');
 
-    logger.addMessage('clipboard History activated');
+    logger.addInfoMessage('clipboard History activated');
 
     disposableArray.push(commands.registerCommand('clipboard.copy', () => {
         try {
             extCommands.addClipboardItem(window.activeTextEditor);
         } catch(error) {
-            logger.addMessage("[ERROR] clipboard.copy => addClipboardItem() " + error.message);
+            logger.addErrorMessage("clipboard.copy => addClipboardItem() " + error.message);
         }
         commands.executeCommand("editor.action.clipboardCopyAction");
     }));
@@ -26,7 +26,7 @@ export function activate(context: ExtensionContext) {
         try {
             extCommands.addClipboardItem(window.activeTextEditor);
         } catch (error) {
-            logger.addMessage("[ERROR] clipboard.cut => addClipboardItem() " + error.message);
+            logger.addErrorMessage("clipboard.cut => addClipboardItem() " + error.message);
         }
         commands.executeCommand("editor.action.clipboardCutAction");
     }));
@@ -35,7 +35,7 @@ export function activate(context: ExtensionContext) {
         try {
             commands.executeCommand("editor.action.clipboardPasteAction");
         } catch (error) {
-            logger.addMessage("[ERROR] clipboard.paste => clipboardPasteAction() " + error.message);
+            logger.addErrorMessage("clipboard.paste => clipboardPasteAction() " + error.message);
         }
     }));
 
@@ -44,7 +44,7 @@ export function activate(context: ExtensionContext) {
             extCommands.pasteFromClipboard();
 
         } catch (error) {
-            logger.addMessage("[ERROR] clipboard.pasteFromClipboard => pasteFromClipboard() " + error.message);
+            logger.addErrorMessage("clipboard.pasteFromClipboard => pasteFromClipboard() " + error.message);
         }
     }));
 
@@ -52,7 +52,7 @@ export function activate(context: ExtensionContext) {
         try {
             extCommands.removeFromClipboard();
         } catch (error) {
-            logger.addMessage("[ERROR] clipboard.removeFromClipboard => removeFromClipboard() " + error.message);
+            logger.addErrorMessage("clipboard.removeFromClipboard => removeFromClipboard() " + error.message);
         }
     }));
 
@@ -60,7 +60,7 @@ export function activate(context: ExtensionContext) {
         try {
             extCommands.editClipboard();
         } catch (error) {
-            logger.addMessage("[ERROR] clipboard.editClipboard=> editClipboard() " + error.message);
+            logger.addErrorMessage("[clipboard.editClipboard => editClipboard() " + error.message);
         }
     }));
 
